@@ -28,7 +28,6 @@ public class ClienteRequest {
    
    private String foneCelular;
    
-   
    private String foneFixo;
    
    public Cliente build() {

@@ -43,10 +43,10 @@ public class Entregador extends EntidadeAuditavel{
    private String rg;
 
    @Column
-   private String qtdentregas;
+   private String qtdEntregas;
 
    @Column
-   private String valorfrete;
+   private String valorFrete;
 
    @Column
    private String rua;

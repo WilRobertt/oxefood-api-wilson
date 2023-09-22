@@ -1,5 +1,7 @@
 package br.com.ifpe.oxefood.modelo.Entregador;
 
-public class EntregadorRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface EntregadorRepository extends JpaRepository<Entregador, Long> {
     
 }
