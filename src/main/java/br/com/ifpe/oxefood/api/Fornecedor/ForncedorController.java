@@ -1,5 +1,4 @@
-package br.com.ifpe.oxefood.api.Produto;
-
+package br.com.ifpe.oxefood.api.Fornecedor;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,41 +9,38 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import br.com.ifpe.oxefood.modelo.Fornecedor.Fornecedor;
+import br.com.ifpe.oxefood.modelo.Fornecedor.FornecedorService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-
-import br.com.ifpe.oxefood.modelo.Produto.Produto;
-import br.com.ifpe.oxefood.modelo.Produto.ProdutoService;
-
 @RestController
-@RequestMapping("/api/produto")
+@RequestMapping("/api/fornecedor")
 @CrossOrigin
-public class ProdutoController {
-    @Autowired
-   private ProdutoService produtoService;
+public class ForncedorController {
+     @Autowired
+   private FornecedorService fornecedorService;
    
-   @ApiOperation(value = "Serviço responsável por salvar um produto no sistema.")
+   @ApiOperation(value = "Serviço responsável por salvar um fornecedor no sistema.")
    @PostMapping
-   public ResponseEntity<Produto> save(@RequestBody ProdutoRequest request) {
+   public ResponseEntity<Fornecedor> save(@RequestBody FornecedorRequest request) {
 
-       Produto produto = produtoService.save(request.build());
-       return new ResponseEntity<Produto>(produto, HttpStatus.CREATED);
+       Fornecedor fornecedor = fornecedorService.save(request.build());
+       return new ResponseEntity<Fornecedor>(fornecedor, HttpStatus.CREATED);
    }
    
-   @ApiOperation(value = "Serviço responsável por listar todos os produtos do sistema.")
+   @ApiOperation(value = "Serviço responsável por listar todos os fornecedores do sistema.")
     @GetMapping
-    public List<Produto> findAll() {
+    public List<Fornecedor> findAll() {
   
-        return produtoService.findAll();
+        return fornecedorService.findAll();
     }
-    
-    @ApiOperation(value = "Serviço responsável por obter um produto referente ao Id passado na URL.")
+    @ApiOperation(value = "Serviço responsável por obter um fornecedor referente ao Id passado na URL.")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Retorna  o fornecedor."),
         @ApiResponse(code = 401, message = "Acesso não autorizado."),
@@ -52,22 +48,18 @@ public class ProdutoController {
         @ApiResponse(code = 404, message = "Não foi encontrado um registro para o Id informado."),
         @ApiResponse(code = 500, message = "Foi gerado um erro no servidor."),
     })
-
+ 
     @GetMapping("/{id}")
-    public Produto findById(@PathVariable long id) {
+    public Fornecedor findById(@PathVariable long id) {
 
-        return produtoService.findById(id);
+        return fornecedorService.findById(id);
     }
-    @PutMapping("/{id}")
-   public ResponseEntity<Produto> update(@PathVariable("id") Long id, @RequestBody ProdutoRequest request) {
-
-       produtoService.update(id, request.build());
-       return ResponseEntity.ok().build();
-   }
    @DeleteMapping("/{id}")
    public ResponseEntity<Void> delete(@PathVariable Long id) {
        
-       produtoService.delete(id);
+       fornecedorService.delete(id);
        return ResponseEntity.ok().build();
    }
 }
+
+
