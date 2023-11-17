@@ -2,6 +2,8 @@ package br.com.ifpe.oxefood.api.cliente;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -23,7 +25,10 @@ public class ClienteRequest {
    @JsonFormat(pattern = "dd/MM/yyyy")
    private LocalDate dataNascimento;
    
-   
+   @NotBlank(message = "O Email é de preenchimento obrigatório")
+   @Email
+    private String email;
+
    private String cpf;
    
    private String foneCelular;
@@ -34,6 +39,7 @@ public class ClienteRequest {
 
        return Cliente.builder()
                .nome(nome)
+               .email(email)
                .dataNascimento(dataNascimento)
                .cpf(cpf)
                .foneCelular(foneCelular)

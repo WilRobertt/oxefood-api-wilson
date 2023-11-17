@@ -56,7 +56,7 @@ public class CategoriaProdutoController {
     @GetMapping("/{id}")
     public CategoriaProduto findById(@PathVariable long id) {
 
-        return categoriaProdutoService.findById(id);
+        return categoriaProdutoService.obterPorID(id);
     }
     @PutMapping("/{id}")
    public ResponseEntity<CategoriaProduto> update(@PathVariable("id") Long id, @RequestBody CategoriaProdutoRequest request) {

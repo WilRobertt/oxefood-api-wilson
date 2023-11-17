@@ -12,7 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProdutoRequest {
-    private String titulo;
+   
+   private Long idCategoria;
+
+   private String titulo;
     
    private String codigoProduto;
    

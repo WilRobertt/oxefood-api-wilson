@@ -28,7 +28,7 @@ public class CategoriaProdutoService {
      return repository.findAll();
  }
  
- public CategoriaProduto findById(Long id) {
+ public CategoriaProduto obterPorID(Long id) {
  
      return repository.findById(id).get();
  }
