@@ -1,5 +1,7 @@
 package br.com.ifpe.oxefood.api.Produto;
 
+import javax.validation.constraints.NotBlank;
+
 import br.com.ifpe.oxefood.modelo.Produto.Produto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,11 +19,13 @@ public class ProdutoRequest {
 
    private String titulo;
     
+   @NotBlank(message = "O código do produto é de preenchimento obrigatório ")
    private String codigoProduto;
    
    private String descricao;
    
-   private String valorUnitario;
+   @NotBlank(message = " O valor unitário é de preenchimento obrigatório")
+   private int valorUnitario;
 
    private String tempoEntregaMax;
    

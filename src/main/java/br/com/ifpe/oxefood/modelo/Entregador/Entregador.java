@@ -24,13 +24,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Entregador extends EntidadeAuditavel{
-    @Column
+   
+    @Column(nullable = false, length = 100)
    private String nome;
     
    @Column
    private LocalDate dataNascimento;
    
-   @Column
+   @Column(unique = true)
    private String cpf;
    
    @Column

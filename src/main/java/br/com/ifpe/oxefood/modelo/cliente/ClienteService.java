@@ -2,6 +2,7 @@ package br.com.ifpe.oxefood.modelo.cliente;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.ifpe.oxefood.modelo.mensagens.EmailService;
+import br.com.ifpe.oxefood.util.exception.EntidadeNaoEncontradaException;
 
 @Service
 public class ClienteService {
@@ -26,9 +28,11 @@ public class ClienteService {
        cliente.setHabilitado(Boolean.TRUE);
        cliente.setVersao(1L);
        cliente.setDataCriacao(LocalDate.now());
-       return repository.save(cliente);
+       Cliente clienteSalvo = repository.save(cliente);
 
        emailService.enviarEmailConfirmacaoCadastroCliente(clienteSalvo);
+       
+       return clienteSalvo;
 
    }
    
@@ -36,10 +40,19 @@ public class ClienteService {
   
     return repository.findAll();
 }
+  
 
 public Cliente findById(Long id) {
+  
+    Optional<Cliente> consulta = repository.findById(id);
+  
+       if (consulta.isPresent()) {
+           return consulta.get();
+       } else {
+           throw new EntidadeNaoEncontradaException("Cliente", id);
+       }
 
-    return repository.findById(id).get();
+    /*return repository.findById(id).get();*/
 }
 
 @Transactional

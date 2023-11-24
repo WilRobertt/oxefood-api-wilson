@@ -27,7 +27,7 @@ public class Cliente  extends EntidadeAuditavel{
    
    @Column
    private String email;
-
+   
    @Column
    private String nome;
     
