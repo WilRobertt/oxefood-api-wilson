@@ -19,7 +19,7 @@ public class ProdutoRequest {
 
    private String titulo;
     
-   @NotBlank(message = "O código do produto é de preenchimento obrigatório ")
+@NotBlank(message = "O código do produto é de preenchimento obrigatório ")
    private String codigoProduto;
    
    private String descricao;

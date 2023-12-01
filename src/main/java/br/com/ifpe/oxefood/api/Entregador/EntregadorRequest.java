@@ -45,6 +45,7 @@ public class EntregadorRequest {
    @NotBlank(message = "O valor do frete é de preenchimento obrigatório")
    private String valorFrete;
    
+
    private String rua;
 
    private String numero;

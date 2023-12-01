@@ -25,8 +25,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClienteRequest {
-   
-   @NotNull(message = "O Nome é de preenchimento obrigatório")
+    
+@NotNull(message = "O Nome é de preenchimento obrigatório")
    @NotBlank(message = "O Nome é de preenchimento obrigatório")
    @Length(max = 100, message = "O Nome deverá ter no máximo {max} caracteres")
    private String nome;
@@ -36,14 +36,14 @@ public class ClienteRequest {
    
    @NotBlank(message = "O Email é de preenchimento obrigatório")
    @Email
-   private String email;
-   
-   @NotNull(message = "O CPF é de preenchimento obrigatório")
+    private String email;
+
+@NotNull(message = "O CPF é de preenchimento obrigatório")
    @NotBlank(message = "O CPF é de preenchimento obrigatório")
    @CPF
    private String cpf;
    
-   @Length(min = 8, max = 20, message = "O campo Fone tem que ter entre {min} e {max} caracteres")
+@Length(min = 8, max = 20, message = "O campo Fone tem que ter entre {min} e {max} caracteres")
    private String foneCelular;
    
    private String foneFixo;

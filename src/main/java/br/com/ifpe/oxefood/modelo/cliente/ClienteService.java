@@ -37,8 +37,8 @@ public class ClienteService {
        Cliente clienteSalvo = repository.save(cliente);
 
        emailService.enviarEmailConfirmacaoCadastroCliente(clienteSalvo);
-       
-       return clienteSalvo;
+
+return clienteSalvo;
 
    }
    
@@ -46,10 +46,10 @@ public class ClienteService {
   
     return repository.findAll();
 }
-  
+
 
 public Cliente findById(Long id) {
-  
+
     Optional<Cliente> consulta = repository.findById(id);
   
        if (consulta.isPresent()) {
