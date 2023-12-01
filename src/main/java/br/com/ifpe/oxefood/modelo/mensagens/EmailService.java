@@ -19,6 +19,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import br.com.ifpe.oxefood.modelo.cliente.Cliente;
+import br.com.ifpe.oxefood.modelo.empresa.Empresa;
 
 /**
  * @author Roberto Alencar
@@ -53,7 +54,17 @@ public class EmailService {
         Context params = new Context();
         params.setVariable("cliente", cliente);
 
-       // this.sendMailTemplate("bem_vindo_cliente.html", cliente.getUsuario().getUsername(), assuntoEmail, params);
+        this.sendMailTemplate("bem_vindo_cliente.html", cliente.getUsuario().getUsername(), assuntoEmail, params);
+    }
+
+    public void enviarEmailConfirmacaoCadastroCliente(Empresa empresa) {
+
+        String assuntoEmail = "Bem vindo ao nosso aplicativo";
+
+        Context params = new Context();
+        params.setVariable("empresa", empresa);
+
+        this.sendMailTemplate("bem_vinda_empresa.html", empresa.getUsuario().getUsername(), assuntoEmail, params);
     }
 
     @Async
