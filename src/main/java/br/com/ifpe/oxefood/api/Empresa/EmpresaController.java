@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.ifpe.oxefood.modelo.acesso.Usuario;
 import br.com.ifpe.oxefood.modelo.empresa.Empresa;
 import br.com.ifpe.oxefood.modelo.empresa.EmpresaService;
 import io.swagger.annotations.ApiOperation;
@@ -26,15 +27,27 @@ import io.swagger.annotations.ApiResponses;
 @RequestMapping("/api/empresa")
 @CrossOrigin
 public class EmpresaController {
-     @Autowired
+   @Autowired
    private EmpresaService empresaService;
-   
+
+
    @ApiOperation(value = "Serviço responsável por salvar um empresa no sistema.")
    @PostMapping
    public ResponseEntity<Empresa> save(@RequestBody @Valid EmpresaRequest request) {
 
-       Empresa empresa = empresaService.save(request.build());
-       return new ResponseEntity<Empresa>(empresa, HttpStatus.CREATED);
+    
+    Empresa empresa = request.buildEmpresa();
+	
+	if (request.getPerfil() != null && !"".equals(request.getPerfil())) {
+	    if (request.getPerfil().equals("Usuario")) {
+		empresa.getUsuario().getRoles().add(Usuario.ROLE_EMPRESA_USER);
+	    } else if (request.getPerfil().equals("Admin")) {
+		empresa.getUsuario().getRoles().add(Usuario.ROLE_EMPRESA);
+	    }
+	}
+
+    Empresa empresaCriada = empresaService.save(request.buildEmpresa());
+       return new ResponseEntity<Empresa>(empresaCriada, HttpStatus.CREATED);
    }
    
    @ApiOperation(value = "Serviço responsável por listar todos os clientes do sistema.")
@@ -62,7 +75,7 @@ public class EmpresaController {
  @PutMapping("/{id}")
    public ResponseEntity<Empresa> update(@PathVariable("id") Long id, @RequestBody EmpresaRequest request) {
 
-       empresaService.update(id, request.build());
+       empresaService.update(id, request.buildEmpresa());
        return ResponseEntity.ok().build();
    }
  @DeleteMapping("/{id}")

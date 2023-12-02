@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CNPJ;
 
+import br.com.ifpe.oxefood.modelo.acesso.Usuario;
 import br.com.ifpe.oxefood.modelo.empresa.Empresa;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,6 +19,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class EmpresaRequest {
        
+    private String email;
+
+    private String password;
+    
+    private String perfil;
+    
     private String site;
     
     @NotNull(message = "O CNPJ é de preenchimento obrigatório")
@@ -42,11 +49,13 @@ public class EmpresaRequest {
 
     private String foneAlternativo;
 
-    public Empresa build() {
+
+    public Empresa buildEmpresa() {
       
         return Empresa.builder()
 
              .site(site)
+             .usuario(buildUsuario())
              .cnpj(cnpj)
              .inscricaoEstadual(inscricaoEstadual)
              .nomeEmpresarial(nomeEmpresarial)
@@ -55,6 +64,13 @@ public class EmpresaRequest {
              .foneAlternativo(foneAlternativo)
              .build();
              
-      
     }
+    public Usuario buildUsuario() {
+	
+	return Usuario.builder()
+		.username(email)
+		.password(password)
+		.build();
+    }
+
 }
