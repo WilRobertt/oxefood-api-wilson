@@ -33,7 +33,7 @@ public class EmpresaService {
        empresa.setDataCriacao(LocalDate.now());
        Empresa empresaSalva = repository.save(empresa);
 
-       emailService.enviarEmailConfirmacaoCadastroCliente(empresaSalva);
+       emailService.enviarEmailConfirmacaoCadastroEmpresa(empresaSalva);
        
        return empresaSalva;
 

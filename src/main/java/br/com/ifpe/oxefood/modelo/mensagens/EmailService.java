@@ -54,7 +54,17 @@ public class EmailService {
         Context params = new Context();
         params.setVariable("cliente", cliente);
 
-       // this.sendMailTemplate("bem_vindo_cliente.html", cliente.getUsuario().getUsername(), assuntoEmail, params);
+       this.sendMailTemplate("bem_vindo_empresa.html", cliente.getUsuario().getUsername(), assuntoEmail, params);
+    }
+
+    public void enviarEmailConfirmacaoCadastroEmpresa(Empresa empresa) {
+
+        String assuntoEmail = "Bem vindo ao nosso aplicativo";
+
+        Context params = new Context();
+        params.setVariable("empresa", empresa);
+
+       this.sendMailTemplate("bem_vindo_empresa.html", empresa.getUsuario().getUsername(), assuntoEmail, params);
     }
 
     @Async
