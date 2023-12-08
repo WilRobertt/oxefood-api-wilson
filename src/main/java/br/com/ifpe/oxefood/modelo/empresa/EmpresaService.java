@@ -7,11 +7,13 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.ifpe.oxefood.modelo.acesso.UsuarioService;
 import br.com.ifpe.oxefood.modelo.mensagens.EmailService;
 import br.com.ifpe.oxefood.util.exception.EntidadeNaoEncontradaException;
 
+@Service
 public class EmpresaService {
      @Autowired
     private EmailService emailService;
@@ -33,7 +35,7 @@ public class EmpresaService {
        empresa.setDataCriacao(LocalDate.now());
        Empresa empresaSalva = repository.save(empresa);
 
-       emailService.enviarEmailConfirmacaoCadastroEmpresa(empresaSalva);
+       //emailService.enviarEmailConfirmacaoCadastroEmpresa(empresaSalva);
        
        return empresaSalva;
 

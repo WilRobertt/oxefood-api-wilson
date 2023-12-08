@@ -67,6 +67,8 @@ public class SecurityConfig {
                 
                 .antMatchers(HttpMethod.POST, "/api/cliente").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/login").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/empresa").permitAll()
+
 
                 //Configuração de autorizações de acesso para Produto
 	 	
